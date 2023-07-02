@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net48</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\close.svg" />
+      <Resource Include="Resources\close.svg" />
+      <None Remove="Resources\Font\SmileySans-Oblique.ttf" />
+      <Resource Include="Resources\Font\SmileySans-Oblique.ttf" />
+      <None Remove="Resources\icon\server.png" />
+      <Resource Include="Resources\icon\server.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Component\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Component\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Component\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Remove="Component\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Costura.Fody" Version="5.8.0-alpha0098">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Google.Protobuf" Version="3.23.3" />
+      <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+      <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+    </ItemGroup>
+
+
+
+</Project>

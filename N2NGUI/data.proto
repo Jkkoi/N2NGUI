@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+
+message Data{
+  enum EnyptType{
+    NONE=0;
+    TWOFISH=1;
+    AES=2;
+    CHACHA20=3;
+    SPECKCTR=4;
+  }
+ 
+  string Server =1;
+  string LanAddress=2;
+  string community =3;
+  EnyptType type=4;
+  string  Password=5;
+}

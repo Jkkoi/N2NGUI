@@ -1,0 +1,166 @@
+﻿<mah:MetroWindow x:Class="N2NGUI.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+                 xmlns:local="clr-namespace:N2NGUI"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 mc:Ignorable="d"
+                 ResizeMode="CanMinimize"
+                 Title="MainWindow"
+                 Height="500" Width="350"
+                 Closing="Window_Closing">
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <Button Click="LaunchGitHubSite" ToolTip="Open up the GitHub site">
+                <iconPacks:PackIconModern Width="22"
+                                          Height="22"
+                                          Kind="SocialGithubOctocat" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+
+    <Window.DataContext>
+        <local:DataValidating />
+    </Window.DataContext>
+    <StackPanel Margin="5 10 5 10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="3"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <mah:MetroHeader Grid.Column="0"
+                             Margin="3">
+                <mah:MetroHeader.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="ServerNetwork" />
+                            <TextBlock Margin="2 0 0 0"
+                                       VerticalAlignment="Center"
+                                       Text="服务器"
+                                       FontFamily="{StaticResource SmileySans}"
+                                       FontSize="18" />
+                        </StackPanel>
+                    </DataTemplate>
+                </mah:MetroHeader.HeaderTemplate>
+                <TextBox
+                    x:Name="ServerAddressBox"
+                    Text="{Binding Path=ServerAddress, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True}"
+                    mah:TextBoxHelper.Watermark="Server Address"
+                    FontFamily="{StaticResource SmileySans}" FontSize="17" />
+
+            </mah:MetroHeader>
+            <mah:MetroHeader Grid.Column="2"
+                             Margin="3">
+                <mah:MetroHeader.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="Lan" />
+                            <TextBlock Margin="2 0 0 0"
+                                       VerticalAlignment="Center"
+                                       Text="内网IP"
+                                       FontFamily="{StaticResource SmileySans}"
+                                       FontSize="18" />
+                        </StackPanel>
+                    </DataTemplate>
+                </mah:MetroHeader.HeaderTemplate>
+                <TextBox
+                    x:Name="LanAddressBox"
+                    Text="{Binding Path=LanAddress, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True}"
+                    mah:TextBoxHelper.Watermark="留空随机分配"
+                    FontFamily="{StaticResource SmileySans}"
+                    FontSize="17" />
+
+            </mah:MetroHeader>
+
+        </Grid>
+        <Border Height="15" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="3"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <mah:MetroHeader Grid.Column="0"
+                             Margin="3">
+                <mah:MetroHeader.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="AccountGroup" />
+                            <TextBlock Margin="2 0 0 0"
+                                       VerticalAlignment="Center"
+                                       Text="小组名称"
+                                       FontFamily="{StaticResource SmileySans}"
+                                       FontSize="18" />
+                        </StackPanel>
+                    </DataTemplate>
+                </mah:MetroHeader.HeaderTemplate>
+                <TextBox
+                    x:Name="CoummityBox"
+                    Text="{Binding Path=Community, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True}"
+                    mah:TextBoxHelper.Watermark="频道名"
+                    FontFamily="{StaticResource SmileySans}" FontSize="17" />
+
+            </mah:MetroHeader>
+            <mah:MetroHeader Grid.Column="2"
+                             Margin="3">
+                <mah:MetroHeader.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="Lock" />
+                            <TextBlock Margin="2 0 0 0"
+                                       VerticalAlignment="Center"
+                                       Text="加密"
+                                       FontFamily="{StaticResource SmileySans}"
+                                       FontSize="18" />
+                            <ComboBox
+                                x:Name="EncryptTypeComboBox"
+                                Visibility="Collapsed"
+                                IsEnabled="False" SelectedIndex="2" Margin=" 5">
+                                <ComboBoxItem>无加密</ComboBoxItem>
+                                <ComboBoxItem>twofish</ComboBoxItem>
+                                <ComboBoxItem>AES</ComboBoxItem>
+                                <ComboBoxItem>chacha20</ComboBoxItem>
+                                <ComboBoxItem>Speck-CTR</ComboBoxItem>
+                            </ComboBox>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </mah:MetroHeader.HeaderTemplate>
+                <TextBox
+                    x:Name="EncryptPasswordBox"
+                    Text="{Binding Path=Password, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True}"
+                    mah:TextBoxHelper.Watermark="留空不加密"
+                    FontFamily="{StaticResource SmileySans}"
+                    FontSize="17" />
+
+            </mah:MetroHeader>
+
+        </Grid>
+        <Button 
+            Margin="5" Width="100" HorizontalAlignment="Right" 
+                VerticalContentAlignment="Center" 
+                HorizontalContentAlignment="Left"
+               Click="ControlBtn">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <iconPacks:PackIconMaterial x:Name="ControlBtnImg" Kind="ChevronRight" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    Margin="15 0 0  0"
+                    FontFamily="{StaticResource SmileySans}"
+                    FontSize="17"
+                    x:Name="ControlBtnTextBlock">
+                    开启
+                </TextBlock>
+            </StackPanel>
+        </Button>
+        <TextBox Height="251"
+                 VerticalScrollBarVisibility="Visible"
+                 TextWrapping="Wrap"
+                 x:Name="LogBlock"
+                 />
+    </StackPanel>
+</mah:MetroWindow>
